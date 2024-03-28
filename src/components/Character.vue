@@ -4,7 +4,11 @@
 		class="character"
 		:style="{ backgroundColor: character.bgColor }"
 	>
-		<CharacterAnimation v-if="active" :character="character" />
+		<CharacterAnimation
+			:active="this.active"
+			v-if="active"
+			:character="character"
+		/>
 		<img
 			v-else
 			class="character__image"
@@ -37,10 +41,16 @@ export default {
 			id: Number,
 		},
 	},
+
 	methods: {
 		handleCharacterClick() {
-			this.active = !this.active;
-			console.log('hi', this.character.id);
+			if (this.active === false) {
+				this.active = true;
+			} else {
+				setTimeout(() => {
+					this.active = false;
+				}, 2300);
+			}
 		},
 	},
 };
@@ -73,6 +83,11 @@ export default {
 		bottom: 0;
 		width: 100%;
 		height: 100%;
+	}
+}
+@media (orientation: portrait) {
+	.character {
+		height: 30vh;
 	}
 }
 </style>
