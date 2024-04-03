@@ -1,5 +1,5 @@
 {
-	"name": "anim",
+	"name": "danganronpa",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -9,6 +9,7 @@
 	"dependencies": {
 		"gsap": "^3.12.5",
 		"howler": "^2.2.4",
+		"odometer": "^0.4.8",
 		"vue": "^3.2.13",
 		"vue-router": "^4.0.3",
 		"vuex": "^4.0.0"

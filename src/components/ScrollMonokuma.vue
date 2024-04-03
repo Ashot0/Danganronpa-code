@@ -33,9 +33,13 @@ export default {
 		onMounted(() => {
 			gsap.to('.monokuma', {
 				scrollTrigger: {
-					trigger: '.monokuma',
-					toggleActions: 'restart none none reset',
+					trigger: '.box-monokuma',
+					toggleActions: 'restart reset restart reset',
+					start: 'top 80%',
+					end: 'bottom 80%',
 				},
+
+				opacity: 1,
 				rotationX: 360,
 				position: 'fixed',
 			});
@@ -72,29 +76,35 @@ export default {
 .monokuma {
 	z-index: 8;
 	position: relative;
+	opacity: 0;
 	top: 80%;
 	left: 5%;
 	width: 100px;
 	height: 100px;
 }
 .up {
-	background: center / contain no-repeat url(/src/assets/Monokuma/up.gif);
+	background: center / contain no-repeat
+		url(/src/assets/PixelCharacters/Monokuma/up.gif);
 }
 .down {
-	background: center / contain no-repeat url(/src/assets/Monokuma/down.gif);
+	background: center / contain no-repeat
+		url(/src/assets/PixelCharacters/Monokuma/down.gif);
 }
 .stop {
-	background: center / contain no-repeat url(/src/assets/Monokuma/stor.gif);
+	background: center / contain no-repeat
+		url(/src/assets/PixelCharacters/Monokuma/stor.gif);
 	width: 95px;
 	height: 95px;
 }
 .happy {
-	background: center / contain no-repeat url(/src/assets/Monokuma/happy.gif);
+	background: center / contain no-repeat
+		url(/src/assets/PixelCharacters/Monokuma/happy.gif);
 	width: 95px;
 	height: 95px;
 }
 .sleep {
-	background: center / contain no-repeat url(/src/assets/Monokuma/sleep.gif);
+	background: center / contain no-repeat
+		url(/src/assets/PixelCharacters/Monokuma/sleep.gif);
 	left: 6%;
 	width: 90px;
 	height: 90px;

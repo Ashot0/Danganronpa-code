@@ -1,11 +1,15 @@
 <template>
 	<div class="hero">
-		<img class="hero__logo" src="@/assets/char-logo.png" alt="" />
+		<img class="hero__bg-1" src="@/assets/bg_holder.png" alt="" />
+		<img class="hero__bg-2" src="@/assets/bgimg_00_02.png" alt="" />
+		<img class="hero__bg-3" src="@/assets/bgimg_02_02.png" alt="" />
+		<img class="hero__bg-4" src="@/assets/bg02.png" alt="" />
+		<img class="hero__logo" src="@/assets/char-logo-white.png" alt="" />
 		<div class="parallax" ref="parallax">
 			<img
 				ref="parallaxImg"
 				class="parallax__img"
-				src="@/assets/Monokuma/paralax.png"
+				src="@/assets/Paralax/paralax.png"
 				alt="Parallax Image"
 			/>
 
@@ -25,11 +29,55 @@ const parallax = ref(null);
 const textContainer = ref(null);
 
 onMounted(() => {
+	gsap.to('.hero__bg-1', {
+		rotationZ: '360deg',
+		transformPerspective: 1000,
+		duration: 50,
+		repeat: -1,
+		ease: 'linear',
+		transformOrigin: '50% 50%',
+	});
+	gsap.to('.hero__bg-1', {
+		left: '-20%',
+		delay: 1.5,
+		duration: 0.8,
+		ease: 'bounce.out',
+	});
+	gsap.to('.hero__bg-2', {
+		top: '10%',
+		delay: 1.7,
+		duration: 1.5,
+		ease: 'elastic.out',
+	});
+	gsap.to('.hero__bg-3', {
+		rotationZ: '45deg',
+		left: '50%',
+		delay: 1.7,
+		duration: 0.3,
+		ease: 'linear',
+		transformOrigin: '50% 50%',
+	});
+	gsap.to('.hero__bg-4', {
+		bottom: '-10%',
+		opacity: 0.5,
+		delay: 2,
+		duration: 0.5,
+		ease: 'linear',
+	});
+	gsap.to('.parallax__img', {
+		top: '10%',
+		height: '80vh',
+		opacity: 1,
+		delay: 1.3,
+		duration: 0.1,
+		ease: 'linear',
+	});
+
 	parallax.value.addEventListener('mousemove', (e) => {
 		const { clientX, clientY } = e;
 		const { offsetWidth, offsetHeight } = parallax.value;
-		const x = (clientX / window.innerWidth - 0.5) * 140;
-		const y = (clientY / window.innerHeight - 0.5) * 140;
+		const x = (clientX / window.innerWidth - 0.5) * 40;
+		const y = (clientY / window.innerHeight - 0.5) * 40;
 		gsap.to('.parallax__img', {
 			duration: 0.5,
 			rotationX: -y,
@@ -67,25 +115,28 @@ onMounted(() => {
 	const textElement1 = textContainer.value.querySelectorAll('.text_1');
 	const textElement2 = textContainer.value.querySelectorAll('.text_2');
 	const textElement = (elem) => {
-		elem.forEach((text) => {
-			const chars = text.innerText.split('');
-			text.innerText = '';
-			chars.forEach((char, index) => {
-				const span = document.createElement('span');
-				span.innerText = char;
-				span.style.position = 'relative';
-				span.style.top = '0';
-				text.appendChild(span);
-				gsap.to(span, {
-					opacity: 1,
-					duration: 0.5,
-					color: 'black',
-					ease: 'bounce.out',
-					top: '0',
-					delay: index * 0.2,
+		setTimeout(() => {
+			elem.forEach((text) => {
+				const chars = text.innerText.split('');
+				text.innerText = '';
+				chars.forEach((char, index) => {
+					const span = document.createElement('span');
+					span.innerText = char;
+					span.style.position = 'relative';
+					span.style.top = '0';
+					text.appendChild(span);
+					gsap.to(span, {
+						opacity: 1,
+						duration: 0.5,
+						color: 'white',
+						textShadow: '1px 1px 2px black',
+						ease: 'bounce.out',
+						top: '0',
+						delay: index * 0.2,
+					});
 				});
 			});
-		});
+		}, 1800);
 	};
 	textElement(textElement1);
 	setTimeout(() => {
@@ -99,16 +150,50 @@ onUnmounted(() => {});
 <style lang="scss" scoped>
 .hero {
 	width: 100vw;
-	height: 100vh;
+	height: 110vh;
 	overflow: hidden;
-	background-color: #be0022ff;
-
+	background-color: black;
 	&__logo {
 		position: absolute;
 		top: 6%;
 		left: 6%;
 		height: 20%;
 		z-index: 1;
+	}
+	&__bg-1 {
+		position: absolute;
+		width: 50vw;
+		height: 50vw;
+		top: 10%;
+		//left: -20%;
+		left: -100%;
+		z-index: 2;
+	}
+	&__bg-2 {
+		position: absolute;
+		width: 80vw;
+		height: 80vh;
+		top: -100%;
+		//top: 10%;
+		left: 15%;
+		z-index: 1;
+	}
+	&__bg-3 {
+		position: absolute;
+		width: 80vw;
+		height: 80vh;
+		top: -50%;
+		translate: transform(50deg);
+		//left: 50%;
+		left: 100%;
+		z-index: 1;
+	}
+	&__bg-4 {
+		position: absolute;
+		width: 100vw;
+		opacity: 0;
+		bottom: -100%;
+		z-index: 0;
 	}
 }
 .parallax {
@@ -121,10 +206,12 @@ onUnmounted(() => {});
 	justify-content: center;
 	align-items: center;
 	&__img {
+		opacity: 0;
 		z-index: 3;
 		position: absolute;
-		top: 10%;
-		filter: drop-shadow(0px 0px 40px #e33c96);
+		top: 30%;
+		height: 30vh;
+		filter: drop-shadow(0px 0px 10px #e33c96);
 	}
 }
 .text-container {
@@ -147,7 +234,7 @@ onUnmounted(() => {});
 		font-style: normal;
 		position: absolute;
 		font-size: 500%;
-		color: #be0022ff;
+		color: rgba(190, 0, 35, 0);
 		z-index: 2;
 	}
 	&_1 {
@@ -159,6 +246,7 @@ onUnmounted(() => {});
 		transform: rotate(45deg);
 	}
 }
+
 @media (orientation: portrait) {
 	.text_hidden {
 		display: none;

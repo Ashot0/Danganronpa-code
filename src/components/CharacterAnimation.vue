@@ -58,8 +58,10 @@ export default {
 		const complete = ref(false);
 		const over = ref(false);
 		onMounted(() => {
-			complete.value = true;
-			over.value = true;
+			setTimeout(() => {
+				complete.value = true;
+				over.value = true;
+			}, 200);
 		});
 		onUnmounted(() => {
 			complete.value = false;
@@ -90,13 +92,14 @@ export default {
 	transition: width 1s;
 	&__image {
 		position: relative;
-		height: 100%;
+		top: 10%;
+		height: 90%;
 		z-index: 70;
 	}
 	&_small {
 		.characteranimation__image {
-			height: 120%;
-			top: -10%;
+			height: 110%;
+			top: 0%;
 			z-index: 70;
 		}
 	}
@@ -117,7 +120,7 @@ export default {
 	.characteranimation {
 		height: 30vh;
 		&__image {
-			left: -13vw;
+			// left: -13vh;
 		}
 	}
 }

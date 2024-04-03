@@ -43,13 +43,11 @@ export default {
 			animTimeline.fromTo(
 				'.line__wrapper',
 				{
-					duration: 0.3,
-					delay: 0.3,
 					left: '0%',
 					width: '0%',
 				},
 				{
-					delay: 0,
+					delay: 0.3,
 					width: '120%',
 					left: '-10%',
 				}
@@ -211,6 +209,7 @@ export default {
 
 .line {
 	&__wrapper {
+		overflow: hidden;
 		display: flex;
 		flex-direction: column;
 		gap: 0;
@@ -261,6 +260,7 @@ export default {
 	}
 	&__white {
 		margin: 0%;
+		padding: 0;
 	}
 	&_color {
 		color: white;
@@ -314,16 +314,24 @@ export default {
 	}
 }
 @media (orientation: portrait) {
-	.text {
+	.line {
 		&__wrapper {
-			margin-left: 10%;
-			font-size: 2rem;
+		}
+		&_color {
+		}
+		&_white {
+		}
+	}
+	.text {
+		overflow: hidden;
+		&__wrapper {
+			font-size: 1.8rem;
 		}
 		&_litle {
 			font-size: 0.4rem;
 		}
 		&_color {
-			font-size: 1.3rem;
+			font-size: 0.8rem;
 		}
 	}
 }

@@ -59,12 +59,12 @@ export default {
 <style lang="scss" scoped>
 .character {
 	overflow: hidden;
-	height: 100vh;
+	height: 97vh;
 	object-fit: fill;
 	position: relative;
 	display: flex;
 	justify-content: center;
-	width: calc(100vw / 15);
+	width: calc(78vw / 15);
 	transition: all 0.5s;
 	&__image {
 		position: relative;
