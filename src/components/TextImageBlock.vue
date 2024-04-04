@@ -188,33 +188,8 @@ export default {
 	}
 	@media (orientation: portrait) {
 		.text-image-block {
-			height: 200%;
 			&__text {
-				// position: relative;
-				// margin-top: 100%;
-				// width: 100vw;
 				font-size: 1rem;
-			}
-			// &__image {
-			// 	// position: relative;
-			// 	width: 100vw;
-			// 	height: fit-content;
-			// }
-			&__text-left {
-				width: 100vw;
-				margin-top: 0%;
-			}
-			&__text-right {
-				width: 100vw;
-				margin-top: 100%;
-			}
-			&__image-right {
-				width: 100vw;
-				margin-top: 0%;
-			}
-			&__image-left {
-				width: 100vw;
-				margin-top: 70%;
 			}
 		}
 	}
