@@ -19,6 +19,8 @@
 import { onMounted, ref, watch, onUnmounted } from 'vue';
 import Odometer from 'odometer';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/8.mp3';
 export default {
 	props: { info: Object },
 	setup(props) {
@@ -28,7 +30,12 @@ export default {
 		const odometerRef = ref(null);
 		let odometer;
 
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.1,
+		});
 		onMounted(() => {
+			soundStart.play();
 			odometer = new Odometer({
 				el: odometerRef.value,
 				value: 0,
@@ -62,6 +69,7 @@ export default {
 		});
 
 		onUnmounted(() => {
+			soundStart.stop();
 			infoTimeline.clear;
 		});
 		return { odometerRef };
@@ -78,6 +86,7 @@ export default {
 	&__wrapper {
 	}
 	&__odometer {
+		text-wrap: nowrap;
 		left: 50%;
 		transform: translate(-50%);
 		font-size: 45vh;

@@ -16,8 +16,10 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/3.mp3';
 export default {
 	props: { info: Object },
 	setup() {
@@ -25,7 +27,15 @@ export default {
 			defaults: { duration: 0.2, ease: 'linear' },
 		});
 
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.1,
+		});
 		onMounted(() => {
+			setTimeout(() => {
+				soundStart.play();
+			}, 400);
+
 			infoTimeline.fromTo(
 				'.char-3__wrapper',
 				{
@@ -51,7 +61,10 @@ export default {
 				'-=85%'
 			);
 		});
-
+		onUnmounted(() => {
+			soundStart.stop();
+			infoTimeline.clear;
+		});
 		return {};
 	},
 };

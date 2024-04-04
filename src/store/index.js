@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-import myModule from './modules/module';
 import ActiveCharacter from './modules/ActiveCharacter';
 
 export default createStore({
@@ -8,7 +7,6 @@ export default createStore({
 	mutations: {},
 	actions: {},
 	modules: {
-		myModule,
 		ActiveCharacter,
 	},
 });

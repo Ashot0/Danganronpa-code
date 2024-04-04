@@ -1,8 +1,5 @@
 <template>
 	<div class="box"></div>
-	<!-- <div class="box-monokuma">
-		<ScrollMonokuma /> -->
-	<!-- </div> -->
 </template>
 
 <script>
@@ -16,7 +13,7 @@ export default {
 
 <style lang="scss" scoped>
 .box {
-	height: 100vh;
+	height: 70vh;
 	background-color: black;
 }
 </style>

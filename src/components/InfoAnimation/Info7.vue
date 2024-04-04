@@ -38,6 +38,8 @@
 <script>
 import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/7.mp3';
 export default {
 	props: { info: Object },
 	setup(props) {
@@ -45,7 +47,12 @@ export default {
 			defaults: { duration: 0.2, ease: 'linear' },
 		});
 
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.1,
+		});
 		onMounted(() => {
+			soundStart.play();
 			gsap.to('.char-7__ball', {
 				rotate: '360deg',
 				repeat: -1,
@@ -226,9 +233,8 @@ export default {
 				}
 			);
 		});
-		onBeforeUnmount(() => {});
-
 		onUnmounted(() => {
+			soundStart.stop();
 			infoTimeline.clear;
 		});
 		return {};

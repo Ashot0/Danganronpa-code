@@ -32,6 +32,9 @@
 <script>
 import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/15.mp3';
+import startExplosiveSrc from '../../assets/sounds/Info/151.mp3';
 export default {
 	props: { info: Object },
 	setup(props) {
@@ -39,7 +42,16 @@ export default {
 			defaults: { duration: 0.2, ease: 'linear' },
 		});
 
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.3,
+		});
+		const explosiveStart = new Howl({
+			src: startExplosiveSrc,
+			volume: 0.3,
+		});
 		onMounted(() => {
+			soundStart.play();
 			infoTimeline.fromTo(
 				'.char-15__explosive',
 				{
@@ -50,6 +62,9 @@ export default {
 					delay: 3,
 					duration: 8,
 					ease: 'elastic.out',
+					onStart: () => {
+						explosiveStart.play();
+					},
 				}
 			);
 			infoTimeline.fromTo(
@@ -90,6 +105,7 @@ export default {
 		});
 
 		onUnmounted(() => {
+			soundStart.stop();
 			infoTimeline.clear;
 		});
 		return {};

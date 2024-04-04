@@ -31,6 +31,9 @@
 <script>
 import { onMounted, ref, reactive, onUnmounted } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/10.mp3';
+import startSoundSrc2 from '../../assets/sounds/Info/101.mp3';
 export default {
 	props: { info: Object },
 	setup() {
@@ -44,7 +47,22 @@ export default {
 				"Chihiro Fujisaki (不二咲 千尋), is a student in Hope's Peak Academy's Class 78th, and a participant of the Killing School Life featured in Danganronpa: Trigger Happy Havoc. Chihiro's title is the Ultimate Programmer (超高校級の「プログラマー」 lit. Super High School Level Programmer)."
 			).map((char) => ({ char, disappeartext: true }))
 		);
+
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.4,
+		});
+		const sound2Start = new Howl({
+			src: startSoundSrc2,
+			volume: 0.1,
+		});
+		const soundStop = () => {
+			soundStart.stop;
+		};
+
 		onMounted(() => {
+			soundStart.play();
+			sound2Start.play();
 			squares.forEach((square) => {
 				setTimeout(() => {
 					square.disappear = true;
@@ -54,10 +72,15 @@ export default {
 				setTimeout(() => {
 					char.disappeartext = false;
 				}, index * 50);
+				if (textChars.length === index) {
+					() => soundStop();
+				}
 			});
 		});
 
-		onUnmounted(() => {});
+		onUnmounted(() => {
+			soundStart.stop();
+		});
 
 		return { canvas, squares, cursor, textChars };
 	},

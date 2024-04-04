@@ -36,6 +36,8 @@
 <script>
 import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/14.mp3';
 export default {
 	props: { info: Object },
 	setup(props) {
@@ -43,7 +45,12 @@ export default {
 			defaults: { duration: 0.1, ease: 'linear' },
 		});
 
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.1,
+		});
 		onMounted(() => {
+			soundStart.play();
 			infoTimeline.to(
 				'.char-14__cracks_1, .char-14__cracks_2, .char-14__cracks_3, .char-14__info',
 				{
@@ -159,6 +166,7 @@ export default {
 		});
 
 		onUnmounted(() => {
+			soundStart.stop();
 			infoTimeline.clear;
 		});
 		return {};

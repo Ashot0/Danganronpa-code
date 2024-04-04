@@ -67,14 +67,20 @@
 <script>
 import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/2.mp3';
 export default {
 	props: { info: Object },
 	setup() {
 		const infoTimeline = gsap.timeline({
 			defaults: { duration: 0.2, ease: 'linear' },
 		});
-
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.1,
+		});
 		onMounted(() => {
+			soundStart.play();
 			infoTimeline.fromTo(
 				'.char-2__wrapper',
 				{
@@ -181,6 +187,7 @@ export default {
 		onBeforeUnmount(() => {});
 
 		onUnmounted(() => {
+			soundStart.stop();
 			infoTimeline.clear;
 		});
 		return {};

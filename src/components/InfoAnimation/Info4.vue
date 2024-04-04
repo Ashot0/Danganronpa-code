@@ -35,14 +35,25 @@
 <script>
 import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/4.mp3';
 export default {
 	props: { info: Object },
 	setup(props) {
 		const infoTimeline = gsap.timeline({
 			defaults: { duration: 0.2, ease: 'linear' },
+			onComplete: () => soundStop(),
 		});
 
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.1,
+		});
+		const soundStop = () => {
+			soundStart.stop();
+		};
 		onMounted(() => {
+			soundStart.play();
 			infoTimeline.to('.char-4__helicopter-right', {
 				repeat: -1,
 				duration: 0.2,
@@ -100,6 +111,7 @@ export default {
 		});
 
 		onUnmounted(() => {
+			soundStart.stop();
 			infoTimeline.clear;
 		});
 		return {};

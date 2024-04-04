@@ -52,7 +52,6 @@ import { onMounted, onUnmounted, watch, ref } from 'vue';
 import { gsap } from 'gsap';
 import Hero from '../components/Hero.vue';
 import Box from '../components/Box.vue';
-import BoxT from '../components/BoxT.vue';
 import Characters from '../components/Characters.vue';
 import TextImageBlock from '../components/TextImageBlock.vue';
 import image1 from '../assets/posters/1.jpg';
@@ -73,7 +72,6 @@ export default {
 		Hero,
 		TextImageBlock,
 		Box,
-		BoxT,
 		SkrollToTop,
 		ScrollMonokuma,
 		BgLogo,

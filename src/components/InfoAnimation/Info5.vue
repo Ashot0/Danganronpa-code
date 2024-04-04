@@ -37,13 +37,20 @@
 <script>
 import { onMounted, ref, onUnmounted } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/5.mp3';
 export default {
 	props: { info: Object },
 	setup(props) {
 		const bookRef = ref(null);
 		const infoTimeline = gsap.timeline({});
 
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.1,
+		});
 		onMounted(() => {
+			soundStart.play();
 			infoTimeline.fromTo(
 				bookRef.value,
 				{
@@ -81,8 +88,8 @@ export default {
 				'-=0.5'
 			);
 		});
-
 		onUnmounted(() => {
+			soundStart.stop();
 			infoTimeline.clear;
 		});
 		return { bookRef };

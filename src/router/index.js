@@ -10,9 +10,7 @@ const routes = [
 	{
 		path: '/:catchAll(.*)',
 		name: 'start',
-		component: function () {
-			return import('../views/AboutView.vue');
-		},
+		component: HomeView,
 	},
 ];
 

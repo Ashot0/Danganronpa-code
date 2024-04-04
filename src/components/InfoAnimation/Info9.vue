@@ -37,6 +37,8 @@
 <script>
 import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/9.mp3';
 export default {
 	props: { info: Object },
 	setup(props) {
@@ -44,7 +46,12 @@ export default {
 			defaults: { duration: 0.2, delay: 0.7, ease: 'bounce' },
 		});
 
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.1,
+		});
 		onMounted(() => {
+			soundStart.play();
 			infoTimeline.fromTo(
 				'.char-9__light_1',
 				{
@@ -93,6 +100,7 @@ export default {
 		});
 
 		onUnmounted(() => {
+			soundStart.stop();
 			infoTimeline.clear;
 		});
 		return {};

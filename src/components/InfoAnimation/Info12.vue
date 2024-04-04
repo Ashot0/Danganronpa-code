@@ -28,6 +28,8 @@
 <script>
 import { onMounted, ref, reactive, onUnmounted } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc from '../../assets/sounds/Info/12.mp3';
 export default {
 	props: { info: Object },
 	setup() {
@@ -37,8 +39,13 @@ export default {
 				"Toko Fukawa (腐川 冬子), is a student in Hope's Peak Academy's Class 78th, and a participant of the Killing School Life featured in Danganronpa: Trigger Happy Havoc. Her title is the Ultimate Writing Prodigy (超高校級の「文学少女」 lit. Super High School Level Literary Girl)."
 			).map((char) => ({ char, disappear: true }))
 		);
+		const infoTimeline = gsap.timeline();
+		const soundStart = new Howl({
+			src: startSoundSrc,
+			volume: 0.1,
+		});
 		onMounted(() => {
-			const infoTimeline = gsap.timeline();
+			soundStart.play();
 			infoTimeline.to(bookRef.value, {
 				duration: 1,
 				rotationY: -180,
@@ -78,7 +85,10 @@ export default {
 			});
 		});
 
-		onUnmounted(() => {});
+		onUnmounted(() => {
+			soundStart.stop();
+			infoTimeline.clear;
+		});
 
 		return { bookRef, textChars };
 	},

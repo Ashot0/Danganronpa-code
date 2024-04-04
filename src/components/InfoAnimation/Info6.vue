@@ -24,6 +24,9 @@
 <script>
 import { onMounted, ref, watch, onUnmounted, onBeforeUnmount } from 'vue';
 import { gsap } from 'gsap';
+import { Howl, Howler } from 'howler';
+import startSoundSrc1 from '../../assets/sounds/Info/61.mp3';
+import startSoundSrc2 from '../../assets/sounds/Info/62.mp3';
 export default {
 	props: { info: Object },
 	setup(props) {
@@ -31,6 +34,14 @@ export default {
 			defaults: { duration: 0.2, ease: 'linear' },
 		});
 
+		const soundStart1 = new Howl({
+			src: startSoundSrc1,
+			volume: 0.1,
+		});
+		const soundStart2 = new Howl({
+			src: startSoundSrc2,
+			volume: 0.1,
+		});
 		onMounted(() => {
 			infoTimeline.to(
 				'.char-6__hello_1, .char-6__hello_2, .char-6__hello_3, .char-6__hello_4',
@@ -49,6 +60,9 @@ export default {
 					delay: 2,
 					fontSize: '24rem',
 					ease: 'elastic.out',
+					onStart: () => {
+						soundStart1.play();
+					},
 				}
 			);
 			infoTimeline.fromTo(
@@ -70,6 +84,9 @@ export default {
 					delay: 0.1,
 					fontSize: '24rem',
 					ease: 'elastic.out',
+					onStart: () => {
+						soundStart2.play();
+					},
 				}
 			);
 			infoTimeline.fromTo(
@@ -91,6 +108,9 @@ export default {
 					delay: 0.1,
 					fontSize: '24rem',
 					ease: 'elastic.out',
+					onStart: () => {
+						soundStart1.play();
+					},
 				}
 			);
 			infoTimeline.fromTo(
@@ -112,6 +132,9 @@ export default {
 					delay: 0.1,
 					fontSize: '24rem',
 					ease: 'elastic.out',
+					onStart: () => {
+						soundStart2.play();
+					},
 				}
 			);
 			infoTimeline.fromTo(
@@ -137,6 +160,8 @@ export default {
 		});
 
 		onUnmounted(() => {
+			soundStart1.stop();
+			soundStart2.stop();
 			infoTimeline.clear;
 		});
 		return {};
