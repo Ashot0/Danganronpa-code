@@ -189,4 +189,25 @@ export default {
 		text-shadow: 1px 1px 2px black;
 	}
 }
+@media (orientation: portrait) {
+	.char-4 {
+		&__wrapper {
+			margin-top: 0%;
+		}
+		&__money {
+			width: fit-content;
+			height: 100%;
+		}
+		&__info {
+			flex-direction: column;
+		}
+		&__image {
+			width: 100%;
+		}
+		&__text {
+			width: 100%;
+			font-size: 1rem;
+		}
+	}
+}
 </style>

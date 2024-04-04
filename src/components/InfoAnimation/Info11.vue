@@ -247,4 +247,21 @@ export default {
 		text-shadow: 0px 0px 20px rgb(0, 0, 0);
 	}
 }
+@media (orientation: portrait) {
+	.char-11 {
+		&__wrapper {
+			margin-top: 0%;
+		}
+		&__info {
+			flex-direction: column;
+		}
+		&__image {
+			width: 100%;
+		}
+		&__text {
+			width: 100%;
+			font-size: 1rem;
+		}
+	}
+}
 </style>

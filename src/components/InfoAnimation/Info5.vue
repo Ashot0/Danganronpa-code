@@ -167,4 +167,25 @@ export default {
 		text-shadow: 1px 1px 2px black;
 	}
 }
+@media (orientation: portrait) {
+	.char-5 {
+		&__book {
+			display: flex;
+			flex-direction: column;
+		}
+		&__left-img {
+			display: none;
+		}
+		&__right-img {
+			display: none;
+		}
+		&__left-content {
+		}
+		&__image {
+		}
+		&__text {
+			font-size: 1rem;
+		}
+	}
+}
 </style>

@@ -107,4 +107,9 @@ export default {
 		height: 100%;
 	}
 }
+@media (orientation: portrait) {
+	.char-info {
+		margin-top: -70vh;
+	}
+}
 </style>

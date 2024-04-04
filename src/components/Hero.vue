@@ -248,12 +248,14 @@ onUnmounted(() => {});
 }
 
 @media (orientation: portrait) {
+	.hero__bg-3 {
+		display: none;
+	}
 	.text_hidden {
 		display: none;
 	}
 	.parallax {
 		&__img {
-			width: 70%;
 		}
 	}
 }

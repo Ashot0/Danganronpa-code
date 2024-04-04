@@ -40,9 +40,9 @@
 				:id="6"
 			/>
 		</div>
-		<div class="home__characters"><Characters /></div>
+		<div class="home__characters"><Characters class="home__character" /></div>
 		<CharInfo class="home__char-info" />
-		<Box />
+		<Box class="home__box" />
 		<Footer />
 	</div>
 </template>
@@ -133,26 +133,29 @@ export default {
 					filter: 'blur(0rem)',
 				}
 			);
-			gsap.to('.home__characters', {
-				scrollTrigger: {
-					trigger: '.home__characters',
-					start: 'top top',
-					end: '+=500',
-					scrub: true,
-					pin: true,
-					anticipatePin: 1,
-				},
-			});
-			gsap.to('.home__char-info', {
-				scrollTrigger: {
-					trigger: '.home__char-info',
-					start: 'top top',
-					end: '+=600',
-					scrub: true,
-					pin: true,
-					anticipatePin: 1,
-				},
-			});
+			if (window.innerHeight < window.innerWidth) {
+				gsap.to('.home__characters', {
+					scrollTrigger: {
+						trigger: '.home__characters',
+						start: 'top top',
+						end: '+=500',
+						scrub: true,
+						pin: true,
+						anticipatePin: 1,
+					},
+				});
+
+				gsap.to('.home__char-info', {
+					scrollTrigger: {
+						trigger: '.home__char-info',
+						start: 'top top',
+						end: '+=600',
+						scrub: true,
+						pin: true,
+						anticipatePin: 1,
+					},
+				});
+			}
 		});
 		return {
 			text1TextImageBlock,
@@ -211,7 +214,17 @@ export default {
 @media (orientation: portrait) {
 	.home {
 		&__characters {
-			margin-bottom: 50px;
+			margin-bottom: 0px;
+		}
+		&__box {
+			display: none;
+		}
+		&__character {
+			position: relative;
+		}
+
+		&__char-info {
+			position: relative;
 		}
 	}
 }

@@ -176,4 +176,21 @@ export default {
 .disappear {
 	opacity: 0;
 }
+@media (orientation: portrait) {
+	.char-12 {
+		&__book {
+			height: 50vh;
+		}
+		&__info {
+			flex-direction: column;
+		}
+		&__image {
+			width: 100%;
+		}
+		&__text {
+			width: 100%;
+			font-size: 1rem;
+		}
+	}
+}
 </style>

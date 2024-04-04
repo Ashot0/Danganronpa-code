@@ -55,4 +55,13 @@ export default {
 	opacity: 1;
 	pointer-events: auto;
 }
+@media (orientation: portrait) {
+	.scroll-up {
+		img {
+			width: 100%;
+			margin-right: -50px;
+			// height: 50%;
+		}
+	}
+}
 </style>

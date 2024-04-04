@@ -143,4 +143,21 @@ export default {
 .disappear {
 	opacity: 0;
 }
+@media (orientation: portrait) {
+	.char-10 {
+		&__wrapper {
+			margin-top: 0%;
+		}
+		&__info {
+			flex-direction: column;
+		}
+		&__image {
+			width: 100%;
+		}
+		&__text {
+			width: 100%;
+			font-size: 1rem;
+		}
+	}
+}
 </style>

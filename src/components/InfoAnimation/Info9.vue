@@ -171,4 +171,21 @@ export default {
 		filter: drop-shadow(0px 0px 40px rgb(255, 1, 255));
 	}
 }
+@media (orientation: portrait) {
+	.char-9 {
+		&__wrapper {
+			margin-top: 0%;
+		}
+		&__info {
+			flex-direction: column;
+		}
+		&__image {
+			width: 100%;
+		}
+		&__text {
+			width: 100%;
+			font-size: 1rem;
+		}
+	}
+}
 </style>

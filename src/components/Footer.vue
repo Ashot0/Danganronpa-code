@@ -53,7 +53,7 @@ export default {
 	bottom: 0;
 	height: 0%;
 	width: 100vw;
-	padding: 1% 15vw 1% 15vw;
+	padding: 5vh 15vw 5vh 15vw;
 	background-color: #333;
 	color: white;
 	text-shadow: 1px 1px 4px rgb(255, 0, 187);
@@ -63,6 +63,11 @@ export default {
 	a {
 		color: white;
 		text-decoration: none;
+	}
+}
+@media (orientation: portrait) {
+	.footer {
+		padding-bottom: 15vh;
 	}
 }
 </style>
