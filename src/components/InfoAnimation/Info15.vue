@@ -19,11 +19,10 @@
 				alt=""
 			/>
 			<p class="char-15__text">
-				Yasuhiro Hagakure (葉隠 康比呂), also known as Hiro, is a student in
-				Hope's Peak Academy's Class 78th, and a participant of the Killing
-				School Life featured in Danganronpa: Trigger Happy Havoc. His title is
-				the Ultimate Clairvoyant (超高校級の「占い師」 lit. Super High School
-				Level Fortune-Teller).
+				Junko Enoshima (江ノ島 盾子), is a student in Hope's Peak Academy's
+				Class 78th, and a participant of the Killing School Life featured in
+				Danganronpa: Trigger Happy Havoc. Her title is the Ultimate Fashionista
+				(超高校級の「ギャル」 lit. Super High School Level Gyaru).
 			</p>
 		</div>
 	</div>

@@ -70,11 +70,11 @@
 				alt=""
 			/>
 			<p class="char-13__text">
-				Yasuhiro Hagakure (葉隠 康比呂), also known as Hiro, is a student in
-				Hope's Peak Academy's Class 78th, and a participant of the Killing
-				School Life featured in Danganronpa: Trigger Happy Havoc. His title is
-				the Ultimate Clairvoyant (超高校級の「占い師」 lit. Super High School
-				Level Fortune-Teller).
+				Hifumi Yamada (山田 一二三), is a student in Hope's Peak Academy's Class
+				78th, and a participant of the Killing School Life featured in
+				Danganronpa: Trigger Happy Havoc. His title is the Ultimate Fanfic
+				Creator (超高校級の「同人作家」 lit. Super High School Level Dōjin
+				Author).
 			</p>
 		</div>
 	</div>

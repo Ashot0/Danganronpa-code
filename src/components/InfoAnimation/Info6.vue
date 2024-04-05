@@ -11,11 +11,11 @@
 		<div class="char-6__info">
 			<img class="char-6__image" src="@/assets/characters/More/6.png" alt="" />
 			<p class="char-6__text">
-				Yasuhiro Hagakure (葉隠 康比呂), also known as Hiro, is a student in
+				Kiyotaka Ishimaru (石丸 清多夏), also known as Taka, is a student in
 				Hope's Peak Academy's Class 78th, and a participant of the Killing
 				School Life featured in Danganronpa: Trigger Happy Havoc. His title is
-				the Ultimate Clairvoyant (超高校級の「占い師」 lit. Super High School
-				Level Fortune-Teller).
+				the Ultimate Moral Compass (超高校級の「風紀委員」 lit. Super High
+				School Level Public Morals Committee Member).
 			</p>
 		</div>
 	</div>
