@@ -74,7 +74,7 @@ export default {
 
 <style scoped>
 .monokuma {
-	z-index: 8;
+	z-index: 100;
 	position: relative;
 	opacity: 0;
 	top: 80%;

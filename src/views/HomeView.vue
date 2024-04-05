@@ -2,6 +2,7 @@
 	<div class="home box-monokuma">
 		<ScrollMonokuma />
 		<Preloader />
+		<Cursor />
 		<SkrollToTop />
 		<div class="bg__line">
 			<BgLogo />
@@ -66,6 +67,7 @@ import BgLogo from '../components/BgLogo.vue';
 import CharInfo from '../components/CharInfo.vue';
 import Preloader from '../components/Preloader.vue';
 import Footer from '../components/Footer.vue';
+import Cursor from '../components/Cursor.vue';
 export default {
 	components: {
 		Characters,
@@ -78,6 +80,7 @@ export default {
 		CharInfo,
 		Preloader,
 		Footer,
+		Cursor,
 	},
 	setup(props) {
 		const image1TextImageBlock = image1;
@@ -175,6 +178,19 @@ export default {
 };
 </script>
 <style lang="scss">
+::selection {
+	color: rgba(255, 0, 230, 0.8);
+	text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.282);
+}
+::-webkit-scrollbar {
+	background-color: rgba(0, 0, 0, 0.832);
+	width: 10px;
+}
+::-webkit-scrollbar-thumb {
+	background-color: rgba(255, 0, 230, 0.8);
+	border-radius: 20px;
+	width: 8px;
+}
 * {
 	margin: 0;
 	padding: 0;
