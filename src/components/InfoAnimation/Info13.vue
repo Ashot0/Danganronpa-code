@@ -268,6 +268,7 @@ export default {
 		height: 400%;
 		position: absolute;
 		top: -40%;
+		pointer-events: none;
 	}
 	&__anime {
 		position: absolute;

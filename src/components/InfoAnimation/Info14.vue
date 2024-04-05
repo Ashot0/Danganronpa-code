@@ -193,6 +193,7 @@ export default {
 		height: 100%;
 		object-fit: cover;
 		position: absolute;
+		pointer-events: none;
 		&_1 {
 			opacity: 0;
 		}

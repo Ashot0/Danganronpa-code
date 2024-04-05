@@ -106,6 +106,7 @@ export default {
 		background-color: black;
 		pointer-events: none;
 		transition: opacity 0.5s ease;
+		pointer-events: none;
 	}
 	&__char {
 		display: inline-block;

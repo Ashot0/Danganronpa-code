@@ -89,6 +89,7 @@ export default {
 		rotate: -15deg;
 		transform: translate(50%, -50%);
 		z-index: 12;
+		pointer-events: none;
 	}
 	&__info {
 		opacity: 0;

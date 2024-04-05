@@ -64,6 +64,7 @@ export default {
 				{
 					opacity: 0,
 					duration: 0.5,
+					pointerEvents: 'none',
 				}
 			);
 		});
