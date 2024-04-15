@@ -46,4 +46,9 @@ export default {
 	transform: translate(-50%, -50%);
 	/* mix-blend-mode: difference; */
 }
+@media (orientation: portrait) {
+	.custom-cursor {
+		display: none;
+	}
+}
 </style>

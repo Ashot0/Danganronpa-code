@@ -51,6 +51,7 @@
 <script>
 import { onMounted, onUnmounted, watch, ref } from 'vue';
 import { gsap } from 'gsap';
+import { useStore } from 'vuex';
 import Hero from '../components/Hero.vue';
 import Box from '../components/Box.vue';
 import Characters from '../components/Characters.vue';
@@ -83,6 +84,7 @@ export default {
 		Cursor,
 	},
 	setup(props) {
+		const store = useStore();
 		const image1TextImageBlock = image1;
 		const image2TextImageBlock = image2;
 		const image3TextImageBlock = image3;
@@ -102,7 +104,11 @@ export default {
 		const text6TextImageBlock =
 			"A second anime series, titled Danganronpa 3: The End of Hope's Peak High School, aired between July and September 2016. The series concludes the 'Hope's Peak Academy' storyline and is split into two parts; Future Side which takes place after Danganronpa 2: Goodbye Despair, and Despair Side, which takes place prior to the events of Trigger Happy Havoc. Seiji Kishi once again directed the series at Lerche, while Norimitsu Kaihō wrote the screenplay.";
 
-		onMounted(() => {
+		const setIsLoading = () => {
+			store.dispatch('setIsLoading', true);
+		};
+
+		window.addEventListener('load', () => {
 			gsap.fromTo(
 				'.preloader',
 				{
@@ -118,10 +124,12 @@ export default {
 					height: '0%',
 					visibility: 'hidden',
 					display: 'none',
-					delay: 1.5,
 					duration: 0.3,
 				}
 			);
+			setIsLoading();
+		});
+		onMounted(() => {
 			gsap.fromTo(
 				'.home__characters',
 				{ filter: 'blur(1.5rem)' },

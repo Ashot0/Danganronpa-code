@@ -1,7 +1,11 @@
 <template>
 	<div class="char-info">
 		<div class="char-info__null null" v-if="active == null">
-			<div class="char-info__central-text">
+			<div
+				ref="scrollElement"
+				@click="scrollTo100"
+				class="char-info__central-text"
+			>
 				<p>&#9650;</p>
 				<p>choose character</p>
 			</div>
@@ -42,6 +46,12 @@ export default {
 		const active = ref(null);
 		const playAnimation = ref(null);
 
+		const scrollElement = ref(null);
+		const scrollTo100 = () => {
+			const characterBlock = document.querySelector('.home__characters');
+			characterBlock.scrollIntoView({ behavior: 'smooth' });
+		};
+
 		onMounted(() => {
 			id.value = store.getters['nameActiveId'];
 		});
@@ -55,7 +65,7 @@ export default {
 			}
 		);
 
-		return { active, playAnimation };
+		return { active, playAnimation, scrollTo100, scrollElement };
 	},
 };
 </script>
@@ -79,6 +89,10 @@ export default {
 		z-index: 12;
 	}
 	&__central-text {
+		&:active {
+			color: rgb(192, 194, 197);
+		}
+		cursor: pointer;
 		text-align: center;
 		font-family: 'Pixelify Sans', sans-serif;
 		font-optical-sizing: auto;

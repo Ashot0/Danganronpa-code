@@ -22,127 +22,154 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref, computed, watch } from 'vue';
 import { gsap } from 'gsap';
+import { useStore } from 'vuex';
 
 const parallax = ref(null);
 const textContainer = ref(null);
+const store = useStore();
 
-onMounted(() => {
-	gsap.to('.hero__bg-1', {
-		rotationZ: '360deg',
-		transformPerspective: 1000,
-		duration: 50,
-		repeat: -1,
-		ease: 'linear',
-		transformOrigin: '50% 50%',
-	});
-	gsap.to('.hero__bg-1', {
-		left: '-20%',
-		delay: 1.5,
-		duration: 0.8,
-		ease: 'bounce.out',
-	});
-	gsap.to('.hero__bg-2', {
-		top: '10%',
-		delay: 1.7,
-		duration: 1.5,
-		ease: 'elastic.out',
-	});
-	gsap.to('.hero__bg-3', {
-		rotationZ: '45deg',
-		left: '50%',
-		delay: 1.7,
-		duration: 0.3,
-		ease: 'linear',
-		transformOrigin: '50% 50%',
-	});
-	gsap.to('.hero__bg-4', {
-		bottom: '-10%',
-		opacity: 0.5,
-		delay: 2,
-		duration: 0.5,
-		ease: 'linear',
-	});
-	gsap.to('.parallax__img', {
-		top: '10%',
-		height: '80vh',
-		opacity: 1,
-		delay: 1.3,
-		duration: 0.1,
-		ease: 'linear',
-	});
+const isLoading = computed(() => store.getters.checkLoading);
+const isMobileDevice = window.matchMedia('(orientation: portrait)').matches;
 
-	parallax.value.addEventListener('mousemove', (e) => {
-		const { clientX, clientY } = e;
-		const { offsetWidth, offsetHeight } = parallax.value;
-		const x = (clientX / window.innerWidth - 0.5) * 40;
-		const y = (clientY / window.innerHeight - 0.5) * 40;
-		gsap.to('.parallax__img', {
-			duration: 0.5,
-			rotationX: -y,
-			rotationY: x,
+const afterLoading = () => {
+	setTimeout(() => {
+		gsap.to('.hero__bg-1', {
+			rotationZ: '360deg',
 			transformPerspective: 1000,
-			ease: 'power2.out',
+			duration: 50,
+			repeat: -1,
+			ease: 'linear',
+			transformOrigin: '50% 50%',
+		});
+		gsap.to('.hero__bg-1', {
+			left: '-20%',
+			delay: 1.5,
+			duration: 0.8,
+			ease: 'bounce.out',
+		});
+		gsap.to('.hero__bg-2', {
+			top: '10%',
+			delay: 1.7,
+			duration: 1.5,
+			ease: 'elastic.out',
+		});
+		gsap.to('.hero__bg-3', {
+			rotationZ: '45deg',
+			left: '50%',
+			delay: 1.7,
+			duration: 0.3,
+			ease: 'linear',
+			transformOrigin: '50% 50%',
+		});
+		gsap.to('.hero__bg-4', {
+			bottom: '-10%',
+			opacity: 0.5,
+			delay: 2,
+			duration: 0.5,
+			ease: 'linear',
+		});
+		if (isMobileDevice) {
+			gsap.to('.parallax__img', {
+				top: '40%',
+				height: '40vh',
+				opacity: 1,
+				delay: 1.3,
+				duration: 0.1,
+				ease: 'linear',
+			});
+		} else {
+			gsap.to('.parallax__img', {
+				top: '10%',
+				height: '80vh',
+				opacity: 1,
+				delay: 1.3,
+				duration: 0.1,
+				ease: 'linear',
+			});
+		}
+
+		parallax.value.addEventListener('mousemove', (e) => {
+			const { clientX, clientY } = e;
+			const { offsetWidth, offsetHeight } = parallax.value;
+			const x = (clientX / window.innerWidth - 0.5) * 40;
+			const y = (clientY / window.innerHeight - 0.5) * 40;
+			gsap.to('.parallax__img', {
+				duration: 0.5,
+				rotationX: -y,
+				rotationY: x,
+				transformPerspective: 1000,
+				ease: 'power2.out',
+			});
+
+			gsap.to('.text-container', {
+				duration: 0.5,
+				rotationX: -y,
+				rotationY: x,
+				transformPerspective: 1000,
+				ease: 'power2.out',
+			});
 		});
 
-		gsap.to('.text-container', {
-			duration: 0.5,
-			rotationX: -y,
-			rotationY: x,
-			transformPerspective: 1000,
-			ease: 'power2.out',
-		});
-	});
+		parallax.value.addEventListener('mouseleave', () => {
+			gsap.to('.parallax__img', {
+				duration: 0.5,
+				rotationX: 0,
+				rotationY: 0,
+				transformPerspective: 500,
+				ease: 'power2.out',
+			});
 
-	parallax.value.addEventListener('mouseleave', () => {
-		gsap.to('.parallax__img', {
-			duration: 0.5,
-			rotationX: 0,
-			rotationY: 0,
-			transformPerspective: 500,
-			ease: 'power2.out',
+			gsap.to('.text-container', {
+				duration: 0.5,
+				rotationX: 0,
+				rotationY: 0,
+				transformPerspective: 500,
+				ease: 'power2.out',
+			});
 		});
-
-		gsap.to('.text-container', {
-			duration: 0.5,
-			rotationX: 0,
-			rotationY: 0,
-			transformPerspective: 500,
-			ease: 'power2.out',
-		});
-	});
-	const textElement1 = textContainer.value.querySelectorAll('.text_1');
-	const textElement2 = textContainer.value.querySelectorAll('.text_2');
-	const textElement = (elem) => {
-		setTimeout(() => {
-			elem.forEach((text) => {
-				const chars = text.innerText.split('');
-				text.innerText = '';
-				chars.forEach((char, index) => {
-					const span = document.createElement('span');
-					span.innerText = char;
-					span.style.position = 'relative';
-					span.style.top = '0';
-					text.appendChild(span);
-					gsap.to(span, {
-						opacity: 1,
-						duration: 0.5,
-						color: 'white',
-						textShadow: '1px 1px 2px black',
-						ease: 'bounce.out',
-						top: '0',
-						delay: index * 0.2,
+		const textElement1 = textContainer.value.querySelectorAll('.text_1');
+		const textElement2 = textContainer.value.querySelectorAll('.text_2');
+		const textElement = (elem) => {
+			setTimeout(() => {
+				elem.forEach((text) => {
+					const chars = text.innerText.split('');
+					text.innerText = '';
+					chars.forEach((char, index) => {
+						const span = document.createElement('span');
+						span.innerText = char;
+						span.style.position = 'relative';
+						span.style.top = '0';
+						text.appendChild(span);
+						gsap.to(span, {
+							opacity: 1,
+							duration: 0.5,
+							color: 'white',
+							textShadow: '1px 1px 2px black',
+							ease: 'bounce.out',
+							top: '0',
+							delay: index * 0.2,
+						});
 					});
 				});
-			});
-		}, 1800);
-	};
-	textElement(textElement1);
-	setTimeout(() => {
-		textElement(textElement2);
-	}, 2200);
-});
+			}, 1800);
+		};
+		textElement(textElement1);
+		setTimeout(() => {
+			textElement(textElement2);
+		}, 2200);
+	}, 10);
+};
+watch(
+	() => isLoading.value,
+	(newVal) => {
+		if (newVal) {
+			afterLoading();
+		}
+	}
+);
+onMounted(() => {});
 
 onUnmounted(() => {});
 </script>
