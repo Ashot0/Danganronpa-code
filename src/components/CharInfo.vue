@@ -1,11 +1,12 @@
 <template>
 	<div class="char-info">
-		<div class="char-info__null null" v-if="active == null">
-			<div
-				ref="scrollElement"
-				@click="scrollTo100"
-				class="char-info__central-text"
-			>
+		<div
+			ref="scrollElement"
+			@click="scrollTo100"
+			class="char-info__null null"
+			v-if="active == null"
+		>
+			<div class="char-info__central-text">
 				<p>&#9650;</p>
 				<p>choose character</p>
 			</div>
@@ -112,6 +113,7 @@ export default {
 	}
 }
 .null {
+	cursor: pointer;
 	position: relative;
 	width: 100%;
 	height: 100%;
