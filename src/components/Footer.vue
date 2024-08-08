@@ -1,10 +1,10 @@
 <template>
 	<footer class="footer">
-		<div>
+		<div class="footer__info">
 			<p>Created by Illia Golovan</p>
 			<p>2024</p>
 		</div>
-		<div>
+		<div class="footer__links">
 			<p><a href="https://github.com/Ashot0">My Github</a></p>
 			<p>
 				<a href="https://www.linkedin.com/in/illia-golovan-816a14269/">
@@ -53,13 +53,18 @@ export default {
 	bottom: 0;
 	height: 0%;
 	width: 100vw;
-	padding: 5vh 15vw 15vh 15vw;
-	background-color: #333;
+	padding: 5vh 15vw 5vh 15vw;
+	background-color: #000000;
 	color: white;
 	text-shadow: 1px 1px 4px rgb(255, 0, 187);
 	text-align: start;
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	&__info,
+	&__links {
+		display: flex;
+		gap: 20px;
+	}
 	a {
 		color: white;
 		text-decoration: none;
